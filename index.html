@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        form{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 70vh;
+            gap: 10px;
+        }
+        button{
+            background-color: darkorange;
+            border: none;
+            outline: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 20px;
+            transition: all .5s;
+        }
+        button:hover{
+            background-color: darkorange;
+            color: white;
+        }
+        input{
+            background-color: dodgerblue;
+            border: none;
+            outline: none;
+            padding: 20px 20px;
+            border-radius: 5px;
+            color: cornsilk;
+            font-weight: bold;
+        }
+        #firstBtn{
+             background-color: dodgerblue;
+        }
+        header{
+            background-color: darkorange;
+            color: white; 
+            text-align: center;  
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            height: 100px;
+        }
+        body{
+            background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url("https://www.nokia.com/sites/default/files/2022-01/cybersecurity4.jpg");
+            background-size: cover;
+            background-position: center;
+           
+        }
+        div h1{
+            color: white;
+            text-align: center;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: 25px;
+            margin-top: 30px;
+        }
+        footer{
+            position: fixed;
+            height: 300px;
+            width: 100vw;
+            text-align: center;
+            color: white;
+
+        }
+        footer p{
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="typewriter"></h1>
+        <p>Votre Générerateur de mot de passe en un clic</p>
+    </header>
+    <!-- <div>
+        <h1>Votre mot de passe en un seul clic</h1>
+    </div> -->
+    <form action="#">
+        <button onclick="generateMdp(event)" id="firstBtn">Générer un mot de passe</button>
+        <input type="password" id="myPass">
+        <div>
+            <button id="state" onclick="voir(event)">Voir</button>
+            <button  onclick="myFunction(event)">Copier</button>
+        </div>
+    </form>
+    
+    <footer>
+        <p>Réalisé par Gloire Gnu Linux</p>
+        <span>Développeur web</span>
+    </footer> 
+    <script>
+        const c ='AZERTYUIOPQSDFGHJKLMWXCVBNazertyuiopqsdfghjklmwxcvbn1234567890&-_ç^ù!,;/.'
+        let longeur = 12
+        function generateMdp(event){
+            event.preventDefault()
+            let input = document.querySelector('#myPass')
+            let motDePasse = ''
+            for(let i=0; i< longeur; i++){
+                const indexC = Math.floor(Math.random() * c.length)
+                motDePasse += c[indexC]
+            }
+            input.value = motDePasse;
+
+        }
+        function voir(event){
+            event.preventDefault()
+            let input = document.querySelector('#myPass')
+            let state= document.querySelector('#state')
+            if(input.getAttribute('type') == 'password'){
+                input.setAttribute("type","text")
+                state.innerHTML = 'Cacher'
+            }
+            else{
+                input.setAttribute("type", "password")
+                state.innerHTML = 'Voir'
+
+            }
+        }
+        function myFunction(event){
+            event.preventDefault()
+            let copyText = document.querySelector("#myPass")
+            copyText.select()
+            copyText.setSelectionRange(0,99999)
+            document.execCommand("copy");
+            alert('Elément copié')
+            
+        }
+          let i = 0
+            let texte = "Bienvenu sur Glory Generate Password !"
+            let speed = 80
+            function animJavascript() {
+                if (i < texte.length) {
+                    document.getElementById('typewriter').innerHTML += texte.charAt(i)
+                    i++;
+                    setTimeout(animJavascript, speed);
+                }
+            }
+            animJavascript();
+    </script>
+</body>
+</html>
